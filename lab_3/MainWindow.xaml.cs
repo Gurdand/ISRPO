@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 
 namespace lab_3
 {
@@ -33,6 +35,8 @@ namespace lab_3
             }
 
             cbFontFamily.SelectedIndex = 0;
+
+            
         }
 
         private void BBolt_Click(object sender, RoutedEventArgs e)
@@ -76,6 +80,34 @@ namespace lab_3
             if (richTextBox != null && cbFontFamily.SelectedValue != null)
             {
                 richTextBox.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty, cbFontFamily.SelectedValue);
+            }
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var textRange = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+                textRange.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+        }
+
+        private void SaveFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (richTextBox != null)
+            {
+                var textRange = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+                var str = textRange.Text;
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    File.WriteAllText(saveFileDialog.FileName, str);
+                }
             }
         }
     }

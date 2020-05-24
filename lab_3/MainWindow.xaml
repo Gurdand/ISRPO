@@ -6,13 +6,24 @@
         xmlns:local="clr-namespace:lab_3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="0.2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ToolBar>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open" Click="OpenFile_Click"/>
+                    <MenuItem Header="_Save" Click="SaveFile_Click"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <ToolBar Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <Button Name="bBolt"
                         FontFamily="Gill Sans"
@@ -46,10 +57,10 @@
         </ToolBar>
 
         <RichTextBox Name="richTextBox"
-                     Grid.Row="1"
+                     Grid.Row="2"
                      Margin="5"
                      Padding="5">
-           
+
         </RichTextBox>
     </Grid>
 </Window>
