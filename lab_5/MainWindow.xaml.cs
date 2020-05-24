@@ -34,14 +34,22 @@ namespace lab_5
             listOfFiles.Items.Clear();
             listOfFiles.Visibility = Visibility.Visible;
             tbContext.Visibility = Visibility.Hidden;
-            var dir = new DirectoryInfo(way.Text);
-            string file = obj.Text;
-            FindInDir(dir, file, findInFolders.IsChecked.Value);
 
-            if (listOfFiles.Items.Count == 0)
+            try
             {
-                System.Windows.MessageBox.Show("Файлы не найдены");
-            }
+                var dir = new DirectoryInfo(way.Text);
+                string file = obj.Text;
+                FindInDir(dir, file, findInFolders.IsChecked.Value);
+
+                if (listOfFiles.Items.Count == 0)
+                {
+                    System.Windows.MessageBox.Show("Файлы не найдены");
+                }
+            } 
+            catch (System.ArgumentException)
+            {
+                System.Windows.Forms.MessageBox.Show("Ошибка!\nВведите корректный путь к файлу!");
+            }  
         }
 
         // непосредственно сам поиск

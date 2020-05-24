@@ -28,9 +28,11 @@ namespace lab_5
 
         void ReadText(string fileName)
         {
-            using (StreamReader sr = new StreamReader(fileName))
+            using (FileStream fstream = File.OpenRead(fileName))
             {
-                tbContent.Text = sr.ReadToEnd();
+                byte[] array = new byte[fstream.Length];
+                fstream.Read(array, 0, array.Length);
+                tbContent.Text = System.Text.Encoding.Default.GetString(array);
             }
         }
 
