@@ -1,0 +1,88 @@
+﻿<Window x:Class="lab_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.35*"/>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Center">
+            <TextBox Name="tbMoney"
+                     Width="150"
+                     Height="25"
+                     Margin="10"
+                     Text="0"
+                     TextAlignment="Right"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Button Name="bEnterMoney"
+                    Width="150"
+                    Height="25"
+                    Margin="10"
+                    Content="Внести средства"
+                    Click="BEnterMoney_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Label Content="Внесенная сумма:"/>
+            <Label Content="0" Name="lMoney"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Сдача:"/>
+            <Label Content="0" Name="lChange"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <Label Content="Стоимость напитка: "/>
+            <Label Content="0" Name="lPrice"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <RadioButton GroupName="CoffeeGroup" Margin="5" Click="rbCoffee_Click">Американо</RadioButton>
+                    <RadioButton GroupName="CoffeeGroup" Margin="5" Click="rbCoffee_Click">Капучино</RadioButton>
+                    <RadioButton GroupName="CoffeeGroup" Margin="5" Click="rbCoffee_Click">Эспрессо</RadioButton>
+                    <RadioButton GroupName="CoffeeGroup" Margin="5" Click="rbCoffee_Click">Какао</RadioButton>
+                </StackPanel>
+
+                <StackPanel>
+                    <CheckBox Margin="5" Name="cbSugar">Сахар</CheckBox>
+                    <CheckBox Margin="5" Name="cbMilk">Молоко</CheckBox>
+                </StackPanel>
+            </StackPanel>
+
+            <Button Name="bOk"
+                    Width="150"
+                    Height="25"
+                    Margin="15"
+                    Content="OK"
+                    IsEnabled="False"
+                    Click="BOk"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <Image x:Name="image" Source="coffee.jpg"
+                   Width="420"
+                   Height="Auto"
+                   Canvas.Left="100"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
